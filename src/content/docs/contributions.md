@@ -45,7 +45,7 @@ For direct additions, follow these steps:
 4. **Formatting**: Use clear, concise language. Description should be objective and professional.
 5. **Submit PR**: Provide a clear title and a summary of what you've added.
 
-## Formatting Standards
+## Submission Standards
 
 - **Titles**: Use Title Case (e.g., *Music Education Association*).
 - **Descriptions**: Aim for 1-2 medium-length sentences that explain the resource's value.
@@ -54,10 +54,10 @@ For direct additions, follow these steps:
 ## Pre-Submission Checklist
 
 Before submitting your PR or Issue, please verify:
-[ ] The resource is not already on the list (check the search bar!).
-[ ] The link is active and points to the official site.
-[ ] The description is accurate and free of spelling/grammar errors.
-[ ] The resource is specifically relevant to music education.
+- [ ] The resource is not already on the list (check the sidebar and/or search bar!).
+- [ ] The link is active and points to an official site.
+- [ ] The description is accurate and free of spelling/grammar errors.
+- [ ] The resource is specifically relevant to music education.
 
 ---
 

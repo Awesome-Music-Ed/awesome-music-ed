@@ -15,6 +15,10 @@ export default defineConfig({
 				Footer: './src/components/overrides/Footer.astro',
 			},
 			sidebar: [
+				{	
+					label: 'Home', 
+					link: '/'
+				},
 				{
 					label: 'Getting Started',
 					link: '/getting-started',
@@ -22,6 +26,18 @@ export default defineConfig({
 				{
 					label: 'Contribution Guidelines',
 					link: '/contributions/',
+				},
+				{
+					label: 'About & Disclaimers',
+					link: '/about/',
+				},
+				{
+					label: 'Privacy Policy',
+					link: '/privacy-policy/',
+				},
+				{
+					label: 'Terms & Conditions',
+					link: '/terms/',
 				},
 				{
 					label: 'Tools',
