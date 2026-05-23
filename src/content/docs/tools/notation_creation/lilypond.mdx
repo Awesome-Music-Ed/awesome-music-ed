@@ -1,0 +1,49 @@
+---
+title: "LilyPond"
+description: "An open-source, text-based music notation program that outputs beautiful, publication-quality sheet music engraving."
+createdBy: "The LilyPond Development Team"
+submittedBy: "Awesome Music Ed"
+url: "https://lilypond.org/"
+lastUpdated: 2026-05-23
+---
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+*From the LilyPond website:*
+
+## Music Notation for Everyone
+
+LilyPond is a music engraving system designed to produce sheet music of the highest quality. It brings the aesthetics of traditional hand-engraved music to computer printouts. Because it is controlled entirely via text files, LilyPond is highly accessible and offers outstanding flexibility.
+
+### Key Features
+
+<CardGrid>
+	<Card title="Beautiful Classical Engraving">
+		Produces layouts inspired by traditional hand-engravers, with optimal spacing, beam slope algorithms, and elegant font design.
+	</Card>
+	<Card title="Accessibility-Friendly Workflow">
+		Being a code-based text system, LilyPond is exceptionally accessible for visually impaired composers and blind musicians using screen readers.
+	</Card>
+	<Card title="Text-Based Input">
+		Write scores in simple text files (`.ly`). No graphical user interface required, enabling developers to code music with high speed and precision.
+	</Card>
+	<Card title="Free and Open Source">
+		Completely free of charge, with an active, helpful open-source community developing tools and extensions.
+	</Card>
+	<Card title="Versatile Output & MIDI Support">
+		Compiles instantly to PDF sheet music, SVG graphics, and fully customizable MIDI audio files.
+	</Card>
+	<Card title="LMS and Command-Line Integration">
+		Integrate LilyPond into websites, LaTeX publications, web applications, and automated grading pipelines.
+	</Card>
+</CardGrid>
+
+### Example LilyPond Code
+
+```lilypond
+\relative c' {
+  \clef treble
+  \key c \major
+  \time 4/4
+  c4 d e f | g a b c |
+}
+```

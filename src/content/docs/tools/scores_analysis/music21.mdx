@@ -1,0 +1,42 @@
+---
+title: "music21"
+description: "A Python-based toolkit for computer-aided musicology, computational analysis, and symbolic music representation."
+createdBy: "Michael Cuthbert / MIT"
+submittedBy: "Awesome Music Ed"
+url: "https://web.mit.edu/music21/"
+lastUpdated: 2026-05-23
+---
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+*From the music21 website:*
+
+## A Toolkit for Computer-Aided Musicology
+
+`music21` is a Python-based toolkit for computer-aided musicology. It helps researchers and students answer musical questions quickly and with scientific rigor by writing scripts to search massive corpora of symbolic musical scores.
+
+### Key Features
+
+<CardGrid>
+	<Card title="Symbolic Music Parsing">
+		Read and write a wide variety of music data formats, including MusicXML, MIDI, Humdrum Kern, and ABC notation.
+	</Card>
+	<Card title="Computational Analysis">
+		Programmatically search for pitch classes, intervals, voice crossings, Roman numeral progressions, and melodic contours across large datasets.
+	</Card>
+	<Card title="Algorithmic Generation">
+		Create and manipulate musical scores algorithmically, exporting them instantly to standard notation programs like MuseScore or Sibelius.
+	</Card>
+	<Card title="Built-In Corpus Search">
+		Includes an extensive preloaded corpus of Bach chorales, Beethoven string quartets, and folk songs for immediate computational research.
+	</Card>
+</CardGrid>
+
+### Example Python Code
+
+```python
+from music21 import corpus, roman
+
+# Load a Bach chorale and print its key
+s = corpus.parse('bach/bwv66.6')
+print(s.analyze('key'))
+```

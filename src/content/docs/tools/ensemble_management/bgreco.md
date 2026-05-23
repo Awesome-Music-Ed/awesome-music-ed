@@ -1,6 +1,6 @@
 ---
 title: B. Greco Band & Orchestra Seating Chart
-description: A guide in my new Starlight docs site.
+description: A web-based interactive seating chart generator designed specifically for concert bands, wind ensembles, and orchestras.
 createdBy: Brad Greco
 submittedBy: Awesome Music Ed
 url: https://bgreco.net/band-orchestra-seating-chart/
