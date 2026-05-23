@@ -1,0 +1,152 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  refreshInterval?: 'daily' | 'weekly' | 'monthly';
+}
+
+const { refreshInterval = 'weekly' } = Astro.props;
+
+// Fetch all documentation resources
+const allResources = await getCollection('docs');
+
+// Filter out index.mdx and potentially other non-resource pages
+const resources = allResources.filter(res => res.id !== 'index.mdx' && !res.id.endsWith('index.mdx'));
+
+if (resources.length === 0) {
+  return null;
+}
+
+// Selection logic based on refresh interval
+const now = new Date();
+let intervalIndex: number;
+
+switch (refreshInterval) {
+  case 'daily':
+    intervalIndex = Math.floor(now.getTime() / (1000 * 60 * 60 * 24));
+    break;
+  case 'monthly':
+    intervalIndex = (now.getFullYear() * 12) + now.getMonth();
+    break;
+  case 'weekly':
+  default:
+    // Simple week calculation: days since epoch / 7
+    intervalIndex = Math.floor(now.getTime() / (1000 * 60 * 60 * 24 * 7));
+    break;
+}
+
+const featuredResource = resources[intervalIndex % resources.length];
+const { title, description } = featuredResource.data;
+const link = `/` + featuredResource.id.replace(/\.mdx?$/, '').replace(/\/index$/, '') + `/`;
+---
+
+<div class="featured-resource-container">
+  <a href={link} class="card-link">
+    <div class="card-content">
+      <div class="badge">FEATURED RESOURCE</div>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <div class="action-text">
+        <span>Explore this resource</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .featured-resource-container {
+    margin: 2rem 0;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(88, 28, 135, 0.05), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(129, 140, 248, 0.2);
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .featured-resource-container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+    border-color: rgba(96, 165, 250, 0.5);
+    background: linear-gradient(135deg, rgba(88, 28, 135, 0.08), rgba(59, 130, 246, 0.08));
+  }
+
+  .featured-resource-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 60%);
+    pointer-events: none;
+  }
+
+  .card-link {
+    display: block;
+    padding: 2.5rem;
+    text-decoration: none !important;
+    color: inherit;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+    color: white;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0 0 0.75rem 0 !important;
+    font-size: 2.25rem;
+    color: #1e293b; /* Dark slate for light mode */
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  :global([data-theme='dark']) h2 {
+    color: #f1f5f9; /* Light slate for dark mode */
+    background: linear-gradient(to bottom right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    margin: 0 0 1.5rem 0 !important;
+    font-size: 1.125rem;
+    color: #475569; /* Slate 600 */
+    line-height: 1.6;
+    max-width: 650px;
+  }
+
+  :global([data-theme='dark']) p {
+    color: #94a3b8;
+  }
+
+  .action-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #818cf8;
+    transition: gap 0.2s ease;
+  }
+
+  .featured-resource-container:hover .action-text {
+    gap: 0.75rem;
+    color: #60a5fa;
+  }
+
+  .arrow-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .featured-resource-container:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+</style>

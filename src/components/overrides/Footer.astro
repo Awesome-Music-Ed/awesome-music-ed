@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import Default from "@astrojs/starlight/components/Footer.astro";
+
+const docs = await getCollection("docs");
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+let pathname = Astro.url.pathname.replace(/\/$/, "");
+if (base && pathname.startsWith(base)) {
+    pathname = pathname.slice(base.length);
+}
+const id = pathname.replace(/^\//, "") || "index";
+const entry = docs.find((d) => d.id === id);
+
+const { submittedBy } = entry?.data || {};
+---
+
+<div class="custom-footer">
+    {
+        submittedBy && (
+            <div class="submitted-by-metadata">
+                <p>
+                    Submitted by <span class="submitter">{submittedBy}</span>
+                </p>
+            </div>
+        )
+    }
+    <Default {...Astro.props} />
+</div>
+
+<style>
+    .custom-footer {
+        margin-top: 2rem;
+        position: relative;
+    }
+
+    .submitted-by-metadata {
+        text-align: right;
+        margin-bottom: -1.75rem; /* Exactly above the Last Updated metadata */
+        position: relative;
+        z-index: 1;
+    }
+
+    p {
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+        margin: 0;
+        line-height: inherit;
+    }
+
+    .submitter {
+        color: var(--sl-color-white);
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    /* Ensure we don't interfere with the default footer layout too much */
+    :global(.sl-flex.last-updated-area) {
+        margin-top: 0 !important;
+    }
+</style>
