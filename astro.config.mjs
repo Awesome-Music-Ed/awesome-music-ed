@@ -78,11 +78,6 @@ export default defineConfig({
 							collapsed: true,
 						},
 						{
-							label: 'Safety & Weather',
-							autogenerate: { directory: 'tools/safety_weather' },
-							collapsed: true,
-						},
-						{
 							label: 'Scores & Analysis',
 							autogenerate: { directory: 'tools/scores_analysis' },
 							collapsed: true,
