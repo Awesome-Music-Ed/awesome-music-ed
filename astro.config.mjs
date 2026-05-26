@@ -28,18 +28,6 @@ export default defineConfig({
 					link: '/contributions/',
 				},
 				{
-					label: 'About & Disclaimers',
-					link: '/about/',
-				},
-				{
-					label: 'Privacy Policy',
-					link: '/privacy-policy/',
-				},
-				{
-					label: 'Terms & Conditions',
-					link: '/terms/',
-				},
-				{
 					label: 'Tools',
 					items: [
 						{
