@@ -1,0 +1,72 @@
+---
+interface Props {
+  /** The full Spotify web link (e.g. https://open.spotify.com/episode/5l5HgnHfU66xMprYjDw5Yt) */
+  link?: string;
+  /** Direct ID of the Spotify asset */
+  id?: string;
+  /** Type of the asset (only used if id is provided) */
+  type?: 'episode' | 'track' | 'playlist' | 'show' | 'album';
+  /** Height of the player widget */
+  height?: number | string;
+}
+
+const { link, id, type = 'episode', height = 152 } = Astro.props;
+
+let embedUrl = '';
+
+if (link) {
+  // Regex to extract Spotify type and base-62 ID
+  const match = link.match(/spotify\.com\/(episode|track|playlist|show|album)\/([a-zA-Z0-9]+)/);
+  if (match) {
+    const extractedType = match[1];
+    const extractedId = match[2];
+    embedUrl = `https://open.spotify.com/embed/${extractedType}/${extractedId}?utm_source=generator`;
+  }
+} else if (id) {
+  embedUrl = `https://open.spotify.com/embed/${type}/${id}?utm_source=generator`;
+}
+---
+
+{embedUrl ? (
+  <div class="spotify-embed-wrapper">
+    <iframe
+      src={embedUrl}
+      width="100%"
+      height={height}
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+      style="border-radius: 12px; border: none; background: transparent; display: block;"
+    ></iframe>
+  </div>
+) : (
+  <div class="spotify-error-box">
+    <p class="error-text">Unable to load Spotify player. Please verify the URL.</p>
+  </div>
+)}
+
+<style>
+  .spotify-embed-wrapper {
+    margin: 1.5rem 0;
+    width: 100%;
+    display: block;
+    clear: both;
+  }
+
+  .spotify-error-box {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 12px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    text-align: center;
+  }
+
+  .error-text {
+    margin: 0 !important;
+    font-size: var(--sl-text-sm);
+    color: #ef4444;
+    font-weight: 500;
+  }
+</style>
