@@ -1,0 +1,239 @@
+---
+import { getCollection } from 'astro:content';
+
+const allDocs = await getCollection('docs');
+
+// Filter helper to count pages within specific folders, excluding index files
+const countInFolder = (folder: string) => {
+  return allDocs.filter(doc => 
+    doc.id.startsWith(folder + '/') && 
+    doc.id !== `${folder}/index.mdx` && 
+    !doc.id.endsWith('/index.mdx')
+  ).length;
+};
+
+const toolsCount = countInFolder('tools');
+const pedagogyCount = countInFolder('pedagogy');
+const booksCount = countInFolder('books');
+const podcastsCount = countInFolder('podcasts');
+const advocacyCount = countInFolder('advocacy');
+const orgsCount = countInFolder('organizations');
+
+const totalResources = toolsCount + pedagogyCount + booksCount + podcastsCount + advocacyCount + orgsCount;
+---
+
+<div class="stats-container">
+  <div class="stats-header">
+    <div class="badge">Live Directory Stats</div>
+    <h2>Growing by the day</h2>
+    <p>A fully open-source database curated by music educators, for music educators.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card total-card">
+      <div class="card-bg-gradient"></div>
+      <div class="stat-content">
+        <div class="stat-value">{totalResources}</div>
+        <div class="stat-label">Total Awesome Resources</div>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-value">{toolsCount}</div>
+        <div class="stat-label">Interactive Tools</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-value">{pedagogyCount}</div>
+        <div class="stat-label">Pedagogy Guides</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-value">{booksCount}</div>
+        <div class="stat-label">Curated Literature</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-value">{podcastsCount + advocacyCount + orgsCount}</div>
+        <div class="stat-label">Orgs & Media</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .stats-container {
+    margin: 3rem 0;
+  }
+
+  .stats-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(90deg, #10b981, #3b82f6);
+    color: white;
+    border-radius: 2rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .stats-header h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0 !important;
+    color: #1e293b;
+    border: none !important;
+  }
+
+  :global([data-theme='dark']) .stats-header h2 {
+    color: #f1f5f9;
+  }
+
+  .stats-header p {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin: 0 !important;
+  }
+
+  :global([data-theme='dark']) .stats-header p {
+    color: #94a3b8;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .total-card {
+      grid-column: span 1;
+    }
+  }
+
+  /* When on smaller mobile viewports, let the total card span full width for visual impact */
+  @media (max-width: 767px) {
+    .total-card {
+      grid-column: span 2;
+    }
+  }
+
+  .stat-card {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :global([data-theme='dark']) .stat-card {
+    background: rgba(30, 41, 59, 0.3);
+    border-color: rgba(51, 65, 85, 0.5);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.2);
+  }
+
+  .total-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08));
+    border-color: rgba(99, 102, 241, 0.25);
+  }
+
+  :global([data-theme='dark']) .total-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+  }
+
+  .total-card:hover {
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 10px 25px -10px rgba(168, 85, 247, 0.3);
+  }
+
+  .card-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(168, 85, 247, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .stat-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :global([data-theme='dark']) .stat-value {
+    background: linear-gradient(135deg, #ffffff, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .total-card .stat-value {
+    background: linear-gradient(135deg, #4f46e5, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :global([data-theme='dark']) .total-card .stat-value {
+    background: linear-gradient(135deg, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+    letter-spacing: -0.01em;
+  }
+
+  :global([data-theme='dark']) .stat-label {
+    color: #94a3b8;
+  }
+
+  .total-card .stat-label {
+    color: #4f46e5;
+    font-weight: 700;
+  }
+
+  :global([data-theme='dark']) .total-card .stat-label {
+    color: #a5b4fc;
+  }
+</style>
