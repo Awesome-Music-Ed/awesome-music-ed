@@ -72,6 +72,11 @@ export default defineConfig({
 							autogenerate: { directory: 'tools/scores_analysis' },
 							collapsed: true,
 						},
+						{
+							label: 'Websites',
+							autogenerate: { directory: 'tools/websites' },
+							collapsed: true,
+						},
 					],
 				},
 				{
