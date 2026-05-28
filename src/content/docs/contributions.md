@@ -16,14 +16,14 @@ Awesome Music Ed is more than just a collection of links. We aim to provide a **
 
 ## Self-Promotion Policy
 
-Awesome Music Ed is a curated list of resources by the community, for the community. It is not a platform for personal marketing. However, we believe that some of the best tools are built by the very educators who use them. If you have created a resource that is truly *awesome* and meets our quality standards, then it belongs on this list. We ask that any descriptions remain objective and focused on value provided to the music education community.
+Awesome Music Ed is a curated list of resources by the community, for the community. It is not a platform for personal marketing. However, we believe that some of the best tools and resources are built by the very educators who use them. If you have created a resource that is truly *awesome* and meets our quality standards, then it belongs on this list. We ask that any descriptions remain objective and focused on value provided to the music education community.
 
 ## What You Can Contribute
 
 We welcome a wide range of resources, including:
 - **Software & Apps**: Notation tools, rehearsal aids, administration software.
 - **Pedagogical Resources**: Curriculum guides, lesson plans, research.
-- **Professional Organizations**: State/national MEAs, specialist groups.
+- **Professional Organizations**: State/national MEAs, specialist groups, instrument associations.
 - **Media**: Podcasts, books, and blogs relevant to music ed.
 
 ## How to Contribute
