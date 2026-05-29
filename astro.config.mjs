@@ -5,8 +5,8 @@ import starlightThemeGalaxy from 'starlight-theme-galaxy'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://awesome-music-ed.github.io/',
-	base: '/awesome-music-ed/',
+	site: 'https://www.awesomemusiced.com',
+	base: '/',
 	integrations: [
 		starlight({
 			plugins: [starlightThemeGalaxy()],
