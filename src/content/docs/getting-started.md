@@ -29,7 +29,7 @@ The project is organized into several key categories, which you can find in the 
 
 This list is only as good as the community that builds it! If you know of a resource that should be here—or if you find a link that needs updating—please let us know.
 
-- **Learn how to contribute**: Read our [Contribution Guidelines](/awesome-music-ed/contributions/).
+- **Learn how to contribute**: Read our [Contribution Guidelines](/contributions/).
 - **Submit an issue**: Visit our [GitHub Issues](https://github.com/Awesome-Music-Ed/awesome-music-ed/issues) page.
 
 ## Donate
