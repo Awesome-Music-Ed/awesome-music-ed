@@ -53,7 +53,7 @@ export default defineConfig({
 							collapsed: true,
 						},
 						{
-							label: 'Notation & Creation',
+							label: 'Notation & Composition',
 							autogenerate: { directory: 'tools/notation_creation' },
 							collapsed: true,
 						},
@@ -73,7 +73,7 @@ export default defineConfig({
 							collapsed: true,
 						},
 						{
-							label: 'Websites',
+							label: 'Website Creation',
 							autogenerate: { directory: 'tools/websites' },
 							collapsed: true,
 						},
