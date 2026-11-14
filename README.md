@@ -152,3 +152,4 @@ Awesome Music Ed is entirely free and open-source. If you find these resources h
 ---
 
 *Awesome Music Ed reserves the right to edit or reject any submission if it doesn't align with our curation standards.*
+- [FM-1 Emulator](https://fm1-emulator.atst.tools/) - Free browser emulator for the M-VAVE FM-1 pocket synth; plays stock and 200+ community firmwares
